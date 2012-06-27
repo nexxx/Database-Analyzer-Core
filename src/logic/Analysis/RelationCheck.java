@@ -264,7 +264,7 @@ public abstract class RelationCheck implements RelationInformation {
   public ArrayList<ArrayList<Attribute>> getSubsetOfAttributes(
 	  ArrayList<Attribute> attributes,
 	  ArrayList<ArrayList<Attribute>> resultList) {
-	ArrayList<Attribute> tmpList = new ArrayList<>();
+	ArrayList<Attribute> tmpList;
 
 	for (Attribute arr : attributes) {
 	  tmpList = new ArrayList<>();
@@ -334,7 +334,6 @@ public abstract class RelationCheck implements RelationInformation {
   public ArrayList<Key> getAllCandidateKeys(RelationSchema schema) {
 	ArrayList<Key> candidateKeys = new ArrayList<>();
 	ArrayList<Attribute> l = new ArrayList<>();
-	ArrayList<Attribute> r = new ArrayList<>();
 	ArrayList<Attribute> m = new ArrayList<>();
 	ArrayList<Attribute> n = new ArrayList<>();
 	ArrayList<Attribute> rootNode = new ArrayList<>();
@@ -344,9 +343,6 @@ public abstract class RelationCheck implements RelationInformation {
 	  switch (getAttributePosition(attr, schema.getFunctionalDependencies())) {
 	  case ONLY_LEFT:
 		l.add(attr);
-		break;
-	  case ONLY_RIGHT:
-		r.add(attr);
 		break;
 	  case LEFT_AND_RIGHT:
 		m.add(attr);

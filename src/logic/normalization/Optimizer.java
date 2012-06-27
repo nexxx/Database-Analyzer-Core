@@ -43,7 +43,7 @@ public class Optimizer {
 	RelationSchema relation = relationToNormalize.getClone();
 	RelationSchema backupRelation;
 
-	NormalizationResult result = new NormalizationResult();
+	NormalizationResult result;
 
 	// Pick up lonely Attributes (in no Functional dependency)
 	RelationUtils.getInstance().determineAllAttributes(relation);

@@ -73,7 +73,7 @@ public class RelationCheckTest {
 
 	FunctionalDependency fd = new FunctionalDependency();
 	ArrayList<FunctionalDependency> fds = new ArrayList<>();
-	ArrayList<FunctionalDependency> result = new ArrayList<>();
+	ArrayList<FunctionalDependency> result;
 
 	// B==>A
 	fd.getSourceAttributes().add(attrB);
@@ -94,7 +94,7 @@ public class RelationCheckTest {
 	fds.add(fd);
 
 	result = checker.getMinimalSetOfFds(fds);
-	assertEquals("D->A,B->D", Utilities.getStringFromArrayList(result));
+	assertEquals("[D] -> [A],[B] -> [D]", Utilities.getStringFromArrayList(result));
       assertTrue(checker.areFdSetsEquivalent(fds, result));
   }
 
@@ -109,7 +109,7 @@ public class RelationCheckTest {
 
 	FunctionalDependency fd = new FunctionalDependency();
 	ArrayList<FunctionalDependency> fds = new ArrayList<>();
-	ArrayList<FunctionalDependency> result = new ArrayList<>();
+	ArrayList<FunctionalDependency> result;
 
 	// A==>BC
 	fd.getSourceAttributes().add(attrA);
@@ -131,7 +131,7 @@ public class RelationCheckTest {
 	fds.add(fd);
 
 	result = checker.getMinimalSetOfFds(fds);
-	assertEquals("A->B,B->C,A->D", Utilities.getStringFromArrayList(result));
+	assertEquals("[A] -> [B],[B] -> [C],[A] -> [D]", Utilities.getStringFromArrayList(result));
       assertTrue(checker.areFdSetsEquivalent(fds, result));
   }
 
@@ -171,7 +171,7 @@ public class RelationCheckTest {
 
 	FunctionalDependency fd = new FunctionalDependency();
 	ArrayList<FunctionalDependency> fds = new ArrayList<>();
-	ArrayList<FunctionalDependency> result = new ArrayList<>();
+	ArrayList<FunctionalDependency> result;
 
 	// B==>A
 	fd.getSourceAttributes().add(attrB);
@@ -192,7 +192,7 @@ public class RelationCheckTest {
 	fds.add(fd);
 
 	result = checker.removeUnneccessarySourceAttributes(fds);
-	assertEquals("B->A,D->A,B->D", Utilities.getStringFromArrayList(result));
+	assertEquals("[B] -> [A],[D] -> [A],[B] -> [D]", Utilities.getStringFromArrayList(result));
   }
 
   @Test
@@ -212,7 +212,7 @@ public class RelationCheckTest {
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
-	ArrayList<Key> candidateKeys = new ArrayList<>();
+	ArrayList<Key> candidateKeys;
 
 	// C==>D
 	fd = new FunctionalDependency();
@@ -263,7 +263,7 @@ public class RelationCheckTest {
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
-	ArrayList<Key> candidateKeys = new ArrayList<>();
+	ArrayList<Key> candidateKeys;
 	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
@@ -343,7 +343,7 @@ public class RelationCheckTest {
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
-	ArrayList<Key> candidateKeys = new ArrayList<>();
+	ArrayList<Key> candidateKeys;
 
 	// AB==>C
 	fd = new FunctionalDependency();
@@ -472,7 +472,7 @@ public class RelationCheckTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	FunctionalDependency fd;
-	ArrayList<FunctionalDependency> result = new ArrayList<>();
+	ArrayList<FunctionalDependency> result;
 
 	// Let the tests begin
 	// A==>B
@@ -664,7 +664,7 @@ public class RelationCheckTest {
   @Test
   public void testGetClosure() {
 	// R=({A,B,C,D,E,F},{A==>B,C==>DE,AC==>F})
-	ArrayList<Attribute> result = new ArrayList<>();
+	ArrayList<Attribute> result;
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	Attribute attrA = new Attribute("A", false, false);
 	Attribute attrB = new Attribute("B", false, false);
