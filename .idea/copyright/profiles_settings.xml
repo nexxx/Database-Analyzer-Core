@@ -1,5 +1,5 @@
 <component name="CopyrightManager">
-  <settings default="">
+  <settings default="dba">
     <module2copyright />
     <LanguageOptions name="__TEMPLATE__">
       <option name="separateBefore" value="true" />
