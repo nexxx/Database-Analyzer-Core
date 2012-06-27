@@ -17,9 +17,9 @@
 
 package data;
 
-import java.util.ArrayList;
-
 import utils.Utilities;
+
+import java.util.ArrayList;
 
 /**
  * List of Attributes representing a Key
@@ -30,11 +30,13 @@ public class Key {
   private ArrayList<Attribute> attributes;
 
   public Key() {
-	attributes = new ArrayList<>();
+      super();
+      attributes = new ArrayList<>();
   }
 
   public Key(ArrayList<Attribute> attributes) {
-	this.attributes = attributes;
+      super();
+      this.attributes = attributes;
   }
 
   public ArrayList<Attribute> getAttributes() {
@@ -43,6 +45,6 @@ public class Key {
 
   @Override
   public String toString() {
-	return "(" + Utilities.getStringFromArrayList(getAttributes()) + ")";
+	return "(" + Utilities.getStringFromArrayList(attributes) + ")";
   }
 }

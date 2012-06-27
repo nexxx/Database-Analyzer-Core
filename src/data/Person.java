@@ -30,11 +30,12 @@ public class Person {
   private String fax;
 
   public Person() {
-	name = "";
-	job = "";
-	mail = "";
-	tel = "";
-	fax = "";
+      super();
+      name = "";
+      job = "";
+      mail = "";
+      tel = "";
+      fax = "";
   }
 
   /**

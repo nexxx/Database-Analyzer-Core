@@ -24,7 +24,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class GeneralRelationCheckTest {
 
@@ -40,7 +41,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrE = new Attribute("E", false, false);
 	Attribute attrF = new Attribute("F", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -50,7 +51,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrF);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>C
@@ -77,7 +78,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isSecondNF(schema));
+      assertFalse(checker.isSecondNF(schema));
   }
 
   @Test
@@ -88,14 +89,14 @@ public class GeneralRelationCheckTest {
 	Attribute attrB = new Attribute("B", false, false);
 	Attribute attrC = new Attribute("C", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
 	attributes.add(attrC);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>C
@@ -109,7 +110,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isSecondNF(schema));
+      assertTrue(checker.isSecondNF(schema));
   }
 
   @Test
@@ -124,7 +125,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrF = new Attribute("F", false, false);
 	Attribute attrG = new Attribute("G", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -135,7 +136,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrG);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// B==>ACDE
@@ -158,7 +159,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isSecondNF(schema));
+      assertTrue(checker.isSecondNF(schema));
   }
 
   @Test
@@ -170,7 +171,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -178,7 +179,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrD);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>C
@@ -198,7 +199,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isSecondNF(schema));
+      assertFalse(checker.isSecondNF(schema));
   }
 
   @Test
@@ -210,7 +211,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -218,7 +219,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrD);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>BC
@@ -238,7 +239,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isThirdNF(schema));
+      assertFalse(checker.isThirdNF(schema));
   }
 
   @Test
@@ -251,7 +252,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrD = new Attribute("D", false, false);
 	Attribute attrE = new Attribute("E", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -260,7 +261,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrE);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>BCDE
@@ -291,7 +292,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isThirdNF(schema));
+      assertFalse(checker.isThirdNF(schema));
   }
 
   @Test
@@ -303,7 +304,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -311,7 +312,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrD);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>BCD
@@ -334,7 +335,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isThirdNF(schema));
+      assertTrue(checker.isThirdNF(schema));
   }
 
   @Test
@@ -344,13 +345,13 @@ public class GeneralRelationCheckTest {
 	Attribute attrA = new Attribute("A", false, false);
 	Attribute attrB = new Attribute("B", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>B
@@ -363,7 +364,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isThirdNF(schema));
+      assertTrue(checker.isThirdNF(schema));
   }
 
   @Test
@@ -374,14 +375,14 @@ public class GeneralRelationCheckTest {
 	Attribute attrB = new Attribute("B", false, false);
 	Attribute attrC = new Attribute("C", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
 	attributes.add(attrC);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AC==>B
@@ -401,7 +402,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isThirdNF(schema));
+      assertTrue(checker.isThirdNF(schema));
   }
 
   @Test
@@ -412,14 +413,14 @@ public class GeneralRelationCheckTest {
 	Attribute attrB = new Attribute("B", false, false);
 	Attribute attrC = new Attribute("C", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
 	attributes.add(attrC);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>C
@@ -439,7 +440,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isThirdNF(schema));
+      assertTrue(checker.isThirdNF(schema));
   }
 
   @Test
@@ -452,7 +453,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrD = new Attribute("D", false, false);
 	Attribute attrE = new Attribute("E", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -461,7 +462,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrE);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>C
@@ -488,7 +489,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isThirdNF(schema));
+      assertFalse(checker.isThirdNF(schema));
   }
 
   @Test
@@ -502,7 +503,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrE = new Attribute("E", false, false);
 	Attribute attrF = new Attribute("F", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -512,7 +513,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrF);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// C==>BDAE
@@ -528,7 +529,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isThirdNF(schema));
+      assertFalse(checker.isThirdNF(schema));
   }
 
   @Test
@@ -543,7 +544,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrE = new Attribute("E", false, false);
 	Attribute attrF = new Attribute("F", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -553,7 +554,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrF);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// C==>B
@@ -602,7 +603,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isThirdNF(schema));
+      assertTrue(checker.isThirdNF(schema));
   }
 
   @Test
@@ -614,7 +615,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -622,7 +623,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrD);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>D
@@ -648,7 +649,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isThirdNF(schema));
+      assertTrue(checker.isThirdNF(schema));
   }
 
   @Test
@@ -659,14 +660,14 @@ public class GeneralRelationCheckTest {
 	Attribute attrB = new Attribute("B", false, false);
 	Attribute attrC = new Attribute("C", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
 	attributes.add(attrC);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AC==>B
@@ -686,7 +687,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
   }
 
   @Test
@@ -698,7 +699,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -706,7 +707,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrD);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>BCD
@@ -735,7 +736,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
   }
 
   @Test
@@ -747,7 +748,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -755,7 +756,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrD);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>BCD
@@ -778,7 +779,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isBCNF(schema));
+      assertTrue(checker.isBCNF(schema));
   }
 
   @Test
@@ -789,14 +790,14 @@ public class GeneralRelationCheckTest {
 	Attribute attrB = new Attribute("B", false, false);
 	Attribute attrC = new Attribute("C", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
 	attributes.add(attrC);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>C
@@ -816,7 +817,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
   }
 
   @Test
@@ -827,14 +828,14 @@ public class GeneralRelationCheckTest {
 	Attribute attrB = new Attribute("B", false, false);
 	Attribute attrC = new Attribute("C", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
 	attributes.add(attrC);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>B
@@ -853,7 +854,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
   }
 
   @Test
@@ -865,7 +866,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -873,7 +874,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrD);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// B==>D
@@ -893,7 +894,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
   }
 
   @Test
@@ -907,7 +908,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrE = new Attribute("E", false, false);
 	Attribute attrF = new Attribute("F", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -917,7 +918,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrF);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// C==>B
@@ -966,7 +967,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isBCNF(schema));
+      assertTrue(checker.isBCNF(schema));
   }
 
   @Test
@@ -978,7 +979,7 @@ public class GeneralRelationCheckTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -986,7 +987,7 @@ public class GeneralRelationCheckTest {
 	attributes.add(attrD);
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>D
@@ -1012,7 +1013,7 @@ public class GeneralRelationCheckTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
   }
 
 }

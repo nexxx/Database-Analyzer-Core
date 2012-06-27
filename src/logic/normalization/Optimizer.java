@@ -17,16 +17,11 @@
 
 package logic.normalization;
 
-import java.util.ArrayList;
-
+import data.*;
 import logic.Analysis.GeneralRelationCheck;
 import logic.Analysis.RelationUtils;
-import data.Attribute;
-import data.FunctionalDependency;
-import data.Key;
-import data.NormalForm;
-import data.NormalizationResult;
-import data.RelationSchema;
+
+import java.util.ArrayList;
 
 /**
  * Class providing basic methods for relation-optimization
@@ -38,8 +33,9 @@ public class Optimizer {
   protected GeneralRelationCheck checker;
 
   public Optimizer() {
-	normalizationProcedures = new ArrayList<NormalizationAlgorithm>();
-	checker = new GeneralRelationCheck();
+      super();
+      normalizationProcedures = new ArrayList<>();
+      checker = new GeneralRelationCheck();
   }
 
   public NormalizationResult normalize(RelationSchema relationToNormalize,
@@ -53,8 +49,7 @@ public class Optimizer {
 	RelationUtils.getInstance().determineAllAttributes(relation);
 
 	// Set primary-key if not present
-	if (RelationUtils.getInstance().getPrimaryKey(relation).getAttributes()
-	    .size() == 0) {
+	if (RelationUtils.getInstance().getPrimaryKey(relation).getAttributes().isEmpty()) {
 	  Key newPrimaryKey = RelationUtils.getInstance().getKey(relation);
 	  for (Attribute attribute : relation.getAttributes()) {
 		if (newPrimaryKey.getAttributes().contains(attribute)) {
@@ -112,7 +107,7 @@ public class Optimizer {
 
 	result = startNormalizing(relation, normalizationProcedures, targetNF);
 
-	if (result.getRelations().size() == 0) {
+	if (result.getRelations().isEmpty()) {
 	  result.getRelations().add(backupRelation);
 	}
 

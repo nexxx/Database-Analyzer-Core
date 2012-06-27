@@ -17,17 +17,12 @@
 
 package data;
 
-import java.util.ArrayList;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import utils.Utilities;
 import data.events.Change;
 import data.events.ChangeListener;
+import utils.Utilities;
+
+import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
 
 /**
  * Class representing a Database
@@ -95,7 +90,7 @@ public class Database extends HistoricObject {
    *          the new name for the relation
    */
   public void renameRelationSchema(RelationSchema relation, String newName) {
-	if (getDatabase().contains(relation)) {
+	if (database.contains(relation)) {
 	  changeSupport.fireBeforeChange();
 	  updateFkRelationNames(relation.getName(), newName);
 	  relation.setNameWithoutFiring(newName);
@@ -115,7 +110,7 @@ public class Database extends HistoricObject {
    */
   public void renameAttribute(RelationSchema parentRelation,
 	  Attribute attribute, String newName) {
-	if (getDatabase().contains(parentRelation)) {
+	if (database.contains(parentRelation)) {
 	  if (parentRelation.getAttributes().contains(attribute)) {
 		changeSupport.fireBeforeChange();
 		updateFkAttributeNames(parentRelation.getName(), attribute.getName(),
@@ -195,7 +190,7 @@ public class Database extends HistoricObject {
 	if (database.contains(targetRelation)) {
 	  changeSupport.fireBeforeChange();
 	  replaceRangeOfRelationsWithoutFiring(targetRelation, sourceRelations);
-	  getForeignKeys().addAll(foreignKeys);
+        this.foreignKeys.addAll(foreignKeys);
 	  updateForeignKeyReferences(targetRelation, sourceRelations);
 	  changeSupport.fireAfterChange();
 	  return true;
@@ -214,7 +209,7 @@ public class Database extends HistoricObject {
    */
   private void updateForeignKeyReferences(RelationSchema targetRelation,
 	  ArrayList<RelationSchema> sourceRelations) {
-	for (ForeignKeyConstraint fk : getForeignKeys()) {
+	for (ForeignKeyConstraint fk : foreignKeys) {
 	  if (fk.getSourceRelationName().equals(targetRelation.getName())) {
 		fk.setSourceRelationName(getNewRelationName(fk.getSourceRelationName(),
 		    fk.getSourceAttributeName(), sourceRelations));
@@ -291,7 +286,7 @@ public class Database extends HistoricObject {
    * Restores the references between the attributes and the fd's
    */
   public void restoreReferences() {
-	for (RelationSchema schema : getDatabase()) {
+	for (RelationSchema schema : database) {
 	  schema.restoreReferences();
 	}
 
@@ -309,12 +304,12 @@ public class Database extends HistoricObject {
 	Database dbClone = new Database();
 
 	// clone Relations
-	for (RelationSchema schema : getDatabase()) {
+	for (RelationSchema schema : database) {
 	  dbClone.addRelationSchema(schema.getClone());
 	}
 
 	// clone ForeignKeys
-	for (ForeignKeyConstraint fk : getForeignKeys()) {
+	for (ForeignKeyConstraint fk : foreignKeys) {
 	  dbClone.getForeignKeys().add((ForeignKeyConstraint) fk.getClone());
 	}
 
@@ -352,8 +347,8 @@ public class Database extends HistoricObject {
    *         found
    */
   public RelationSchema getRelationSchemaByIndex(Integer index) {
-	if (index >= 0 && index < getDatabase().size()) {
-	  return getDatabase().get(index);
+	if (index >= 0 && index < database.size()) {
+	  return database.get(index);
 	}
 	return null;
   }
@@ -367,7 +362,7 @@ public class Database extends HistoricObject {
    */
   public RelationSchema getRelationSchemaByName(String name) {
 	RelationSchema resultRelation = null;
-	for (RelationSchema relation : this.getDatabase()) {
+	for (RelationSchema relation : this.database) {
 	  if (relation.getName().equalsIgnoreCase(name)) {
 		resultRelation = relation;
 		break;
@@ -382,8 +377,8 @@ public class Database extends HistoricObject {
    * @return Names of all relations existing in database
    */
   public ArrayList<String> getAllRelationNames() {
-	ArrayList<String> relationNames = new ArrayList<String>();
-	for (RelationSchema relation : getDatabase()) {
+	ArrayList<String> relationNames = new ArrayList<>();
+	for (RelationSchema relation : database) {
 	  relationNames.add(relation.getName());
 	}
 	return relationNames;
@@ -415,13 +410,13 @@ public class Database extends HistoricObject {
 	  String sourceAttributeName) {
 	ArrayList<ForeignKeyConstraint> fksToDelete = new ArrayList<>();
 
-	for (ForeignKeyConstraint fk : getForeignKeys()) {
+	for (ForeignKeyConstraint fk : foreignKeys) {
 	  if (fk.getSourceRelationName().equals(sourceRelationName)
 		  && fk.getSourceAttributeName().equals(sourceAttributeName)) {
 		fksToDelete.add(fk);
 	  }
 	}
-	getForeignKeys().removeAll(fksToDelete);
+      foreignKeys.removeAll(fksToDelete);
   }
 
   /**
@@ -434,7 +429,7 @@ public class Database extends HistoricObject {
    */
   public void updateFkRelationNames(String oldRelationName,
 	  String newRelationName) {
-	for (ForeignKeyConstraint fk : getForeignKeys()) {
+	for (ForeignKeyConstraint fk : foreignKeys) {
 	  if (fk.getSourceRelationName().equals(oldRelationName)) {
 		fk.setSourceRelationName(newRelationName);
 	  }
@@ -456,7 +451,7 @@ public class Database extends HistoricObject {
    */
   public void updateFkAttributeNames(String relationName, String attributeName,
 	  String newAttributeName) {
-	for (ForeignKeyConstraint fk : getForeignKeys()) {
+	for (ForeignKeyConstraint fk : foreignKeys) {
 	  if (fk.getSourceRelationName().equals(relationName)) {
 		if (fk.getSourceAttributeName().equals(attributeName)) {
 		  fk.setSourceAttributeName(newAttributeName);

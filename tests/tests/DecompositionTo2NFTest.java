@@ -27,6 +27,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class DecompositionTo2NFTest {
 
@@ -41,7 +43,7 @@ public class DecompositionTo2NFTest {
 	Attribute attrE = new Attribute("E", false, false);
 	Attribute attrF = new Attribute("F", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -52,7 +54,7 @@ public class DecompositionTo2NFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionTo2NF decomposition = new DecompositionTo2NF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A,B==>C
@@ -79,7 +81,7 @@ public class DecompositionTo2NFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isSecondNF(schema));
+      assertFalse(checker.isSecondNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -97,7 +99,7 @@ public class DecompositionTo2NFTest {
 	Attribute attrB = new Attribute("B", true, false);
 	Attribute attrC = new Attribute("C", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -105,7 +107,7 @@ public class DecompositionTo2NFTest {
 
 	DecompositionTo2NF decomposition = new DecompositionTo2NF();
 	GeneralRelationCheck checker = new GeneralRelationCheck();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>C
@@ -119,7 +121,7 @@ public class DecompositionTo2NFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isSecondNF(schema));
+      assertTrue(checker.isSecondNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -140,7 +142,7 @@ public class DecompositionTo2NFTest {
 	Attribute attrF = new Attribute("F", false, false);
 	Attribute attrG = new Attribute("G", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -152,7 +154,7 @@ public class DecompositionTo2NFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionTo2NF decomposition = new DecompositionTo2NF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// B==>ACDE
@@ -175,7 +177,7 @@ public class DecompositionTo2NFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isSecondNF(schema));
+      assertTrue(checker.isSecondNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -193,7 +195,7 @@ public class DecompositionTo2NFTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -202,7 +204,7 @@ public class DecompositionTo2NFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionTo2NF decomposition = new DecompositionTo2NF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>C
@@ -222,7 +224,7 @@ public class DecompositionTo2NFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isSecondNF(schema));
+      assertFalse(checker.isSecondNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -245,7 +247,7 @@ public class DecompositionTo2NFTest {
 	Attribute attrG = new Attribute("G", false, false);
 	Attribute attrH = new Attribute("H", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -258,7 +260,7 @@ public class DecompositionTo2NFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionTo2NF decomposition = new DecompositionTo2NF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// ABC==>D
@@ -292,7 +294,7 @@ public class DecompositionTo2NFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isSecondNF(schema));
+      assertFalse(checker.isSecondNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 

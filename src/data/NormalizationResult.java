@@ -29,14 +29,16 @@ public class NormalizationResult {
   private ArrayList<ForeignKeyConstraint> foreignKeys;
 
   public NormalizationResult() {
-	relations = new ArrayList<>();
-	foreignKeys = new ArrayList<>();
+      super();
+      relations = new ArrayList<>();
+      foreignKeys = new ArrayList<>();
   }
 
   public NormalizationResult(ArrayList<RelationSchema> relations,
 	  ArrayList<ForeignKeyConstraint> foreignKeys) {
-	this.relations = relations;
-	this.foreignKeys = foreignKeys;
+      super();
+      this.relations = relations;
+      this.foreignKeys = foreignKeys;
   }
 
   /**
@@ -72,8 +74,8 @@ public class NormalizationResult {
   @SuppressWarnings("unchecked")
   public Object getClone() {
 	NormalizationResult clone = new NormalizationResult();
-	clone.setRelations((ArrayList<RelationSchema>) getRelations().clone());
-	clone.setForeignKeys((ArrayList<ForeignKeyConstraint>) getForeignKeys()
+	clone.setRelations((ArrayList<RelationSchema>) relations.clone());
+	clone.setForeignKeys((ArrayList<ForeignKeyConstraint>) foreignKeys
 	    .clone());
 	return clone;
   }

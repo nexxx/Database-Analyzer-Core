@@ -17,11 +17,11 @@
 
 package data;
 
-import java.util.ArrayList;
-
 import data.events.Change;
 import data.events.ChangeListener;
 import data.events.Time;
+
+import java.util.ArrayList;
 
 /**
  * Class representing a Undo/Redo History
@@ -188,7 +188,7 @@ public final class History extends HistoricObject {
    * @return true if backward is possible, false if not
    */
   public boolean getBackwardPossible() {
-	return history.size() > 0 && history.indexOf(currentElement) != 0;
+	return !history.isEmpty() && history.indexOf(currentElement) != 0;
   }
 
   /**
@@ -197,8 +197,8 @@ public final class History extends HistoricObject {
    * @return true ==> forward possible, false ==> forward impossible
    */
   public boolean getForwardPossible() {
-	return history.size() > 0
-	    && history.indexOf(currentElement) < history.size() - 1;
+	return !history.isEmpty()
+            && (history.indexOf(currentElement) < (history.size() - 1));
   }
 
   /**

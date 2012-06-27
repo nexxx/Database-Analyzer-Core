@@ -23,5 +23,5 @@ package data.events;
  * @author Sebastian Theuermann
  */
 public enum Time {
-  BEFORECHANGE, AFTERCHANGE;
+  BEFORECHANGE, AFTERCHANGE
 }

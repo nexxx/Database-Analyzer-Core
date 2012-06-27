@@ -17,13 +17,13 @@
 
 package logic.normalization;
 
-import java.util.ArrayList;
-
-import logic.Analysis.RelationUtils;
 import data.Attribute;
 import data.FunctionalDependency;
 import data.NormalizationResult;
 import data.RelationSchema;
+import logic.Analysis.RelationUtils;
+
+import java.util.ArrayList;
 
 /**
  * Normalization to 2.NF using Decomposition
@@ -54,8 +54,8 @@ public class DecompositionTo2NF extends Decomposition {
 	FunctionalDependency violatingFd;
 
 	// If there is no FD violating 2NF ==> nothing to do here
-	if (relationToNormalize.getFunctionalDependencies().size() == 0
-	    || violatingFds.size() == 0) {
+	if (relationToNormalize.getFunctionalDependencies().isEmpty()
+	    || violatingFds.isEmpty()) {
 	  // Remove duplicate entry of relation in results
 	  for (RelationSchema relation : result.getRelations()) {
 		if (relation.equals(relationToNormalize)) {

@@ -124,10 +124,10 @@ public class Attribute extends HistoricObject implements Serializable {
 
   @Override
   public Object getClone() {
-	Attribute clone = new Attribute(getName());
-	clone.setType(getType());
-	clone.setIsPrimaryKey(getIsPrimaryKey());
-	clone.setIsForeignKey(getIsForeignKey());
+	Attribute clone = new Attribute(name);
+	clone.setType(type);
+	clone.setIsPrimaryKey(isPrimaryKey);
+	clone.setIsForeignKey(isForeignKey);
 	return clone;
   }
 
@@ -136,15 +136,15 @@ public class Attribute extends HistoricObject implements Serializable {
 	if (otherObject instanceof Attribute) {
 	  Attribute otherAttribute = (Attribute) otherObject;
 	  // Name
-	  if (!getName().equals(otherAttribute.getName())) {
+	  if (!name.equals(otherAttribute.getName())) {
 		return false;
 	  }
 	  // PK
-	  if (getIsPrimaryKey() != otherAttribute.getIsPrimaryKey()) {
+	  if (isPrimaryKey != otherAttribute.getIsPrimaryKey()) {
 		return false;
 	  }
 	  // FK
-	  if (getIsForeignKey() != otherAttribute.getIsForeignKey()) {
+	  if (isForeignKey != otherAttribute.getIsForeignKey()) {
 		return false;
 	  }
 	}

@@ -17,14 +17,9 @@
 
 package logic.Analysis;
 
-import java.util.ArrayList;
+import data.*;
 
-import data.Attribute;
-import data.AttributePosition;
-import data.FunctionalDependency;
-import data.Key;
-import data.NormalForm;
-import data.RelationSchema;
+import java.util.ArrayList;
 
 /**
  * Superclass for the RelationCheck-Classes, offers common methods
@@ -269,7 +264,7 @@ public abstract class RelationCheck implements RelationInformation {
   public ArrayList<ArrayList<Attribute>> getSubsetOfAttributes(
 	  ArrayList<Attribute> attributes,
 	  ArrayList<ArrayList<Attribute>> resultList) {
-	ArrayList<Attribute> tmpList = new ArrayList<Attribute>();
+	ArrayList<Attribute> tmpList = new ArrayList<>();
 
 	for (Attribute arr : attributes) {
 	  tmpList = new ArrayList<>();
@@ -432,7 +427,7 @@ public abstract class RelationCheck implements RelationInformation {
 	  }
 	}
 
-	if (nextLevel.size() > 0) {
+	if (!nextLevel.isEmpty()) {
 	  searchCandidateKeys(schema, m, candidateKeys, nextLevel);
 	}
 

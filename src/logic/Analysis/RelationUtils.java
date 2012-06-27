@@ -17,13 +17,9 @@
 
 package logic.Analysis;
 
-import java.util.ArrayList;
+import data.*;
 
-import data.Attribute;
-import data.FunctionalDependency;
-import data.Key;
-import data.NormalForm;
-import data.RelationSchema;
+import java.util.ArrayList;
 
 /**
  * Basic Methods to analyze a relation
@@ -35,6 +31,7 @@ public class RelationUtils {
 
   // Avoid initialization with "new RelationUtils();"
   private RelationUtils() {
+      super();
   }
 
   // Threadsafety first!
@@ -100,7 +97,7 @@ public class RelationUtils {
   public Key getKey(ArrayList<Key> keyList) {
 	Key result = new Key();
 
-	if (keyList.size() > 0) {
+	if (!keyList.isEmpty()) {
 	  result = keyList.get(0);
 	  for (Key key : keyList) {
 		if (key.getAttributes().size() < result.getAttributes().size()) {
@@ -259,7 +256,7 @@ public class RelationUtils {
 	  }
 	}
 
-	if (targetAttributes.size() > 0) {
+	if (!targetAttributes.isEmpty()) {
 	  relation.addFunctionalDependency(new FunctionalDependency(primaryKey
 		  .getAttributes(), targetAttributes));
 	}

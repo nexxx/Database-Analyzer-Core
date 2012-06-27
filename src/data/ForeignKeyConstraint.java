@@ -27,15 +27,17 @@ import java.io.Serializable;
 public final class ForeignKeyConstraint implements Serializable {
 
   public ForeignKeyConstraint() {
+      super();
   }
 
   public ForeignKeyConstraint(String sourceRelationName,
 	  String sourceAttributeName, String targetRelationName,
 	  String targetAttributeName) {
-	this.sourceRelationName = sourceRelationName;
-	this.sourceAttributeName = sourceAttributeName;
-	this.targetRelationName = targetRelationName;
-	this.targetAttributeName = targetAttributeName;
+      super();
+      this.sourceRelationName = sourceRelationName;
+      this.sourceAttributeName = sourceAttributeName;
+      this.targetRelationName = targetRelationName;
+      this.targetAttributeName = targetAttributeName;
   }
 
   /**
@@ -112,9 +114,9 @@ public final class ForeignKeyConstraint implements Serializable {
   public boolean equals(Object obj) {
 	if (obj instanceof ForeignKeyConstraint) {
 	  ForeignKeyConstraint fk = (ForeignKeyConstraint) obj;
-	  if (fk.getSourceAttributeName().equals(getSourceAttributeName())) {
-		if (fk.getTargetRelationName().equals(getTargetRelationName())) {
-		  if (fk.getTargetAttributeName().equals(getTargetAttributeName())) {
+	  if (fk.getSourceAttributeName().equals(sourceAttributeName)) {
+		if (fk.getTargetRelationName().equals(targetRelationName)) {
+		  if (fk.getTargetAttributeName().equals(targetAttributeName)) {
 			return true;
 		  }
 		}
@@ -125,17 +127,17 @@ public final class ForeignKeyConstraint implements Serializable {
 
   public Object getClone() {
 	ForeignKeyConstraint fk = new ForeignKeyConstraint();
-	fk.setSourceRelationName(getSourceRelationName());
-	fk.setSourceAttributeName(getSourceAttributeName());
-	fk.setTargetRelationName(getTargetRelationName());
-	fk.setTargetAttributeName(getTargetAttributeName());
+      fk.sourceRelationName = sourceRelationName;
+      fk.sourceAttributeName = sourceAttributeName;
+      fk.targetRelationName = targetRelationName;
+      fk.targetAttributeName = targetAttributeName;
 	return fk;
   }
 
   @Override
   public String toString() {
-	return getSourceRelationName() + "." + getSourceAttributeName() + "==>"
-	    + getTargetRelationName() + "." + getTargetAttributeName();
+	return sourceRelationName + "." + sourceAttributeName + "==>"
+	    + targetRelationName + "." + targetAttributeName;
   }
 
 }

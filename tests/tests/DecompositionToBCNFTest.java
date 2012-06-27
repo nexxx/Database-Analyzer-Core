@@ -28,6 +28,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class DecompositionToBCNFTest {
 
@@ -39,7 +41,7 @@ public class DecompositionToBCNFTest {
 	Attribute attrB = new Attribute("B", false, false);
 	Attribute attrC = new Attribute("C", true, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -47,7 +49,7 @@ public class DecompositionToBCNFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionToBCNF decomposition = new DecompositionToBCNF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AC==>B
@@ -67,7 +69,7 @@ public class DecompositionToBCNFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
 	NormalizationResult result = new NormalizationResult();
 
 	decomposition.normalize(schema, result, true);
@@ -84,7 +86,7 @@ public class DecompositionToBCNFTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -93,7 +95,7 @@ public class DecompositionToBCNFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionToBCNF decomposition = new DecompositionToBCNF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>BCD
@@ -122,7 +124,7 @@ public class DecompositionToBCNFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -139,7 +141,7 @@ public class DecompositionToBCNFTest {
 	Attribute attrB = new Attribute("B", true, false);
 	Attribute attrC = new Attribute("C", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -147,7 +149,7 @@ public class DecompositionToBCNFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionToBCNF decomposition = new DecompositionToBCNF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>C
@@ -167,7 +169,7 @@ public class DecompositionToBCNFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -185,7 +187,7 @@ public class DecompositionToBCNFTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -194,7 +196,7 @@ public class DecompositionToBCNFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionToBCNF decomposition = new DecompositionToBCNF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>BCD
@@ -217,7 +219,7 @@ public class DecompositionToBCNFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isBCNF(schema));
+      assertTrue(checker.isBCNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -237,7 +239,7 @@ public class DecompositionToBCNFTest {
 	Attribute attrS = new Attribute("S", true, false);
 	Attribute attrG = new Attribute("G", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrC);
 	attributes.add(attrT);
@@ -248,7 +250,7 @@ public class DecompositionToBCNFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionToBCNF decomposition = new DecompositionToBCNF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// C==>T
@@ -289,7 +291,7 @@ public class DecompositionToBCNFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -307,7 +309,7 @@ public class DecompositionToBCNFTest {
 	Attribute attrB = new Attribute("B", false, false);
 	Attribute attrC = new Attribute("C", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -315,7 +317,7 @@ public class DecompositionToBCNFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionToBCNF decomposition = new DecompositionToBCNF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>B
@@ -334,7 +336,7 @@ public class DecompositionToBCNFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -354,7 +356,7 @@ public class DecompositionToBCNFTest {
 	Attribute attrE = new Attribute("E", false, false);
 	Attribute attrF = new Attribute("F", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -365,7 +367,7 @@ public class DecompositionToBCNFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionToBCNF decomposition = new DecompositionToBCNF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// C==>B
@@ -414,7 +416,7 @@ public class DecompositionToBCNFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(true, checker.isBCNF(schema));
+      assertTrue(checker.isBCNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -431,7 +433,7 @@ public class DecompositionToBCNFTest {
 	Attribute attrC = new Attribute("C", false, false);
 	Attribute attrD = new Attribute("D", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -440,7 +442,7 @@ public class DecompositionToBCNFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionToBCNF decomposition = new DecompositionToBCNF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>D
@@ -466,7 +468,7 @@ public class DecompositionToBCNFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isBCNF(schema));
+      assertFalse(checker.isBCNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 

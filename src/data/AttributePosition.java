@@ -24,5 +24,5 @@ package data;
  * @author Sebastian Theuermann
  */
 public enum AttributePosition {
-  ONLY_LEFT, ONLY_RIGHT, LEFT_AND_RIGHT, NOT_EXISTING;
+  ONLY_LEFT, ONLY_RIGHT, LEFT_AND_RIGHT, NOT_EXISTING
 }

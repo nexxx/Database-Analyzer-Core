@@ -17,14 +17,10 @@
 
 package logic.normalization;
 
-import java.util.ArrayList;
-
+import data.*;
 import logic.Analysis.RelationUtils;
-import data.Attribute;
-import data.ForeignKeyConstraint;
-import data.FunctionalDependency;
-import data.Key;
-import data.RelationSchema;
+
+import java.util.ArrayList;
 
 /**
  * Class providing basic synthesis-methods
@@ -52,7 +48,7 @@ public abstract class Synthese implements NormalizationAlgorithm {
 		groups.remove(mutualDependentGroups.get(1));
 	  }
 
-	} while (mutualDependentGroups.size() > 0);
+	} while (!mutualDependentGroups.isEmpty());
   }
 
   /**
@@ -105,7 +101,7 @@ public abstract class Synthese implements NormalizationAlgorithm {
 		}
 		if (getNumberOfMatchingFds(schemaToTest, schema) == schemaToTest
 		    .getFunctionalDependencies().size()
-		    && schemaToTest.getFunctionalDependencies().size() > 0) {
+		    && !schemaToTest.getFunctionalDependencies().isEmpty()) {
 		  return schemaToTest;
 		}
 	  }

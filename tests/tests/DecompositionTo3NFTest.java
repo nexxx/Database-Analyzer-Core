@@ -27,6 +27,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class DecompositionTo3NFTest {
 
@@ -40,7 +41,7 @@ public class DecompositionTo3NFTest {
 	Attribute attrD = new Attribute("D", false, false);
 	Attribute attrE = new Attribute("E", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -50,7 +51,7 @@ public class DecompositionTo3NFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionTo3NF decomposition = new DecompositionTo3NF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// AB==>C
@@ -79,7 +80,7 @@ public class DecompositionTo3NFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isThirdNF(schema));
+      assertFalse(checker.isThirdNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -104,7 +105,7 @@ public class DecompositionTo3NFTest {
 	Attribute attrI = new Attribute("I", false, false);
 	Attribute attrJ = new Attribute("J", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -119,7 +120,7 @@ public class DecompositionTo3NFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionTo3NF decomposition = new DecompositionTo3NF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>GH
@@ -161,7 +162,7 @@ public class DecompositionTo3NFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isThirdNF(schema));
+      assertFalse(checker.isThirdNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 
@@ -181,7 +182,7 @@ public class DecompositionTo3NFTest {
 	Attribute attrD = new Attribute("D", false, false);
 	Attribute attrE = new Attribute("E", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -191,7 +192,7 @@ public class DecompositionTo3NFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	DecompositionTo3NF decomposition = new DecompositionTo3NF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>BCDE
@@ -222,7 +223,7 @@ public class DecompositionTo3NFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isThirdNF(schema));
+      assertFalse(checker.isThirdNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 

@@ -28,6 +28,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class SyntheseTo3NFTest {
 
@@ -47,7 +48,7 @@ public class SyntheseTo3NFTest {
 	Attribute attrI = new Attribute("I", false, false);
 	Attribute attrJ = new Attribute("J", false, false);
 
-	ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	ArrayList<Attribute> attributes = new ArrayList<>();
 
 	attributes.add(attrA);
 	attributes.add(attrB);
@@ -62,7 +63,7 @@ public class SyntheseTo3NFTest {
 
 	GeneralRelationCheck checker = new GeneralRelationCheck();
 	SyntheseTo3NF synthese = new SyntheseTo3NF();
-	ArrayList<FunctionalDependency> fds = new ArrayList<FunctionalDependency>();
+	ArrayList<FunctionalDependency> fds = new ArrayList<>();
 	FunctionalDependency fd;
 
 	// A==>GH
@@ -109,7 +110,7 @@ public class SyntheseTo3NFTest {
 	schema.getAttributes().addAll(attributes);
 	schema.getFunctionalDependencies().addAll(fds);
 
-	assertEquals(false, checker.isThirdNF(schema));
+      assertFalse(checker.isThirdNF(schema));
 
 	NormalizationResult result = new NormalizationResult();
 

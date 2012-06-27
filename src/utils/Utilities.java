@@ -30,6 +30,7 @@ public class Utilities {
 
   // Avoid initialization with "new Utils();"
   private Utilities() {
+      super();
   }
 
   // Threadsafety first!

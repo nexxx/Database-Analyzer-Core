@@ -17,13 +17,9 @@
 
 package logic.Analysis;
 
-import java.util.ArrayList;
+import data.*;
 
-import data.Attribute;
-import data.FunctionalDependency;
-import data.Key;
-import data.NormalForm;
-import data.RelationSchema;
+import java.util.ArrayList;
 
 /**
  * Class containing the general Relation-check
@@ -42,14 +38,14 @@ public class GeneralRelationCheck extends RelationCheck {
 
 	// BCNF
 	updateFdList(violatingFds, checkForBCNF(schema));
-	if (violatingFds.size() == 0) {
+	if (violatingFds.isEmpty()) {
 	  return NormalForm.BOYCECODD;
 	}
 	updateFdList(prevViolatingFds, violatingFds);
 
 	// Third NF
 	updateFdList(violatingFds, checkForThirdNF(schema));
-	if (violatingFds.size() == 0) {
+	if (violatingFds.isEmpty()) {
 	  updateFdList(violatingFds, prevViolatingFds);
 	  return NormalForm.THIRD;
 	}
@@ -57,7 +53,7 @@ public class GeneralRelationCheck extends RelationCheck {
 
 	// Second NF
 	updateFdList(violatingFds, checkForSecondNF(schema));
-	if (violatingFds.size() == 0) {
+	if (violatingFds.isEmpty()) {
 	  updateFdList(violatingFds, prevViolatingFds);
 	  return NormalForm.SECOND;
 	} else {
@@ -106,7 +102,7 @@ public class GeneralRelationCheck extends RelationCheck {
    */
   @Override
   public boolean isSecondNF(RelationSchema schema) {
-	return checkForSecondNF(schema).size() == 0;
+	return checkForSecondNF(schema).isEmpty();
   }
 
   /**
@@ -121,7 +117,7 @@ public class GeneralRelationCheck extends RelationCheck {
 	ArrayList<FunctionalDependency> violatingFds = new ArrayList<>();
 
 	ArrayList<Key> candidateKeys = getAllCandidateKeys(schema);
-	if (candidateKeys.size() == 0) {
+	if (candidateKeys.isEmpty()) {
 	  candidateKeys.add(RelationUtils.getInstance().getPrimaryKey(schema));
 	}
 
@@ -150,7 +146,7 @@ public class GeneralRelationCheck extends RelationCheck {
    */
   @Override
   public boolean isThirdNF(RelationSchema schema) {
-	return checkForThirdNF(schema).size() == 0;
+	return checkForThirdNF(schema).isEmpty();
   }
 
   /**
@@ -184,7 +180,7 @@ public class GeneralRelationCheck extends RelationCheck {
    */
   @Override
   public boolean isBCNF(RelationSchema schema) {
-	return checkForBCNF(schema).size() == 0;
+	return checkForBCNF(schema).isEmpty();
   }
 
   /**

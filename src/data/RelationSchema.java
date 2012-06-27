@@ -17,20 +17,13 @@
 
 package data;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-
-import utils.Utilities;
 import data.events.Change;
 import data.events.ChangeListener;
+import utils.Utilities;
+
+import javax.xml.bind.annotation.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Class representing a Relation
@@ -113,7 +106,7 @@ public class RelationSchema extends HistoricObject implements Serializable {
    *          the new name for the attribute
    */
   public void renameAttributeWithoutFiring(Attribute attribute, String newName) {
-	if (getAttributes().contains(attribute)) {
+	if (attributes.contains(attribute)) {
 	  attribute.setNameWithoutFiring(newName);
 	}
   }
@@ -288,7 +281,7 @@ public class RelationSchema extends HistoricObject implements Serializable {
 
   @Override
   public String toString() {
-	return getName() + " (" + Utilities.getStringFromArrayList(getAttributes())
+	return name + " (" + Utilities.getStringFromArrayList(attributes)
 	    + ")";
   }
 
@@ -299,18 +292,18 @@ public class RelationSchema extends HistoricObject implements Serializable {
 	ArrayList<Attribute> clonesAttributes = new ArrayList<>();
 	ArrayList<FunctionalDependency> clonesFunctionalDependencies = new ArrayList<>();
 
-	for (Attribute attribute : getAttributes()) {
+	for (Attribute attribute : attributes) {
 	  clonesAttributes.add((Attribute) attribute.getClone());
 	}
 
-	for (FunctionalDependency dependency : getFunctionalDependencies()) {
+	for (FunctionalDependency dependency : functionalDependencies) {
 	  clonesFunctionalDependencies.add(dependency.getClone());
 	}
 
-	clone = new RelationSchema(getName(), clonesAttributes,
+	clone = new RelationSchema(name, clonesAttributes,
 	    clonesFunctionalDependencies);
 
-	clone.setOwnId(getOwnId());
+	clone.setOwnId(ownId);
 
 	clone.restoreReferences();
 	clone.initPropertyChangeListeners();
@@ -325,16 +318,16 @@ public class RelationSchema extends HistoricObject implements Serializable {
 	if (object instanceof RelationSchema) {
 	  RelationSchema otherSchema = (RelationSchema) object;
 
-	  if (!getName().equals(otherSchema.getName())) {
+	  if (!name.equals(otherSchema.getName())) {
 		return false;
 	  }
 
-	  if (!getAttributes().equals(otherSchema.getAttributes())) {
+	  if (!attributes.equals(otherSchema.getAttributes())) {
 		return false;
 	  }
 
-	  if (!getFunctionalDependencies().equals(
-		  otherSchema.getFunctionalDependencies())) {
+	  if (!functionalDependencies.equals(
+              otherSchema.getFunctionalDependencies())) {
 		return false;
 	  }
 
@@ -348,7 +341,7 @@ public class RelationSchema extends HistoricObject implements Serializable {
    * Attributes of the relation
    */
   public void initPropertyChangeListeners() {
-	for (Attribute attribute : getAttributes()) {
+	for (Attribute attribute : attributes) {
 	  attribute.addChangeListener(changeListener);
 	}
   }

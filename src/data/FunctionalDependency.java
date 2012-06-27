@@ -44,8 +44,9 @@ public class FunctionalDependency implements Serializable {
   private ArrayList<Attribute> targetAttributes;
 
   public FunctionalDependency() {
-	sourceAttributes = new ArrayList<>();
-	targetAttributes = new ArrayList<>();
+      super();
+      sourceAttributes = new ArrayList<>();
+      targetAttributes = new ArrayList<>();
   }
 
   public FunctionalDependency(ArrayList<Attribute> sourceAttributes,
@@ -92,8 +93,8 @@ public class FunctionalDependency implements Serializable {
   public boolean equals(Object obj) {
 	if (obj instanceof FunctionalDependency) {
 	  FunctionalDependency fd = (FunctionalDependency) obj;
-	  if (this.getSourceAttributes().equals(fd.getSourceAttributes())) {
-		if (this.getTargetAttributes().equals(fd.getTargetAttributes())) {
+	  if (this.sourceAttributes.equals(fd.getSourceAttributes())) {
+		if (this.targetAttributes.equals(fd.getTargetAttributes())) {
 		  return true;
 		}
 	  }
@@ -104,11 +105,11 @@ public class FunctionalDependency implements Serializable {
   public FunctionalDependency getClone() {
 	FunctionalDependency clone = new FunctionalDependency();
 
-	for (Attribute sourceAttribute : getSourceAttributes()) {
+	for (Attribute sourceAttribute : sourceAttributes) {
 	  clone.getSourceAttributes().add((Attribute) sourceAttribute.getClone());
 	}
 
-	for (Attribute targetAttribute : getTargetAttributes()) {
+	for (Attribute targetAttribute : targetAttributes) {
 	  clone.getTargetAttributes().add((Attribute) targetAttribute.getClone());
 	}
 

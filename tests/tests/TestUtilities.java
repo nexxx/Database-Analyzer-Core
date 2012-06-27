@@ -23,6 +23,7 @@ import utils.Utilities;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class TestUtilities {
 
@@ -30,26 +31,26 @@ public class TestUtilities {
   public void testTryParse() {
 	Integer test;
 
-	assertEquals(null, Utilities.tryParseInt("noNumber"));
+      assertNull(Utilities.tryParseInt("noNumber"));
 
 	test = 666;
 	assertEquals(test, Utilities.tryParseInt("666"));
 
-	assertEquals(null, Utilities.tryParseInt(""));
+      assertNull(Utilities.tryParseInt(""));
 
-	assertEquals(null, Utilities.tryParseInt(null));
+      assertNull(Utilities.tryParseInt(null));
 
 	test = 12;
 	assertEquals(test, Utilities.tryParseInt("12"));
 
-	assertEquals(null, Utilities.tryParseInt("2 x 2"));
+      assertNull(Utilities.tryParseInt("2 x 2"));
 
   }
 
   @Test
   public void testGetStringFromArrayList() {
 	// String
-	ArrayList<String> testList = new ArrayList<String>();
+	ArrayList<String> testList = new ArrayList<>();
 	testList.add("A");
 	testList.add("B");
 	testList.add("C");
@@ -57,7 +58,7 @@ public class TestUtilities {
 	assertEquals("A,B,C", Utilities.getStringFromArrayList(testList));
 
 	// Integer
-	ArrayList<Integer> intList = new ArrayList<Integer>();
+	ArrayList<Integer> intList = new ArrayList<>();
 	intList.add(1);
 	intList.add(2);
 	intList.add(3);
@@ -65,7 +66,7 @@ public class TestUtilities {
 	assertEquals("1,2,3", Utilities.getStringFromArrayList(intList));
 
 	// Attribute
-	ArrayList<Attribute> attrList = new ArrayList<Attribute>();
+	ArrayList<Attribute> attrList = new ArrayList<>();
 	attrList.add(new Attribute("one"));
 	attrList.add(new Attribute("two"));
 	attrList.add(new Attribute("three"));

@@ -36,7 +36,8 @@ public class SyntheseTo3NF extends Synthese {
   private GeneralRelationCheck checker;
 
   public SyntheseTo3NF() {
-	checker = new GeneralRelationCheck();
+      super();
+      checker = new GeneralRelationCheck();
   }
 
   @Override

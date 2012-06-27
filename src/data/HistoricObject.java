@@ -17,10 +17,10 @@
 
 package data;
 
-import javax.xml.bind.annotation.XmlTransient;
-
 import data.events.ChangeListener;
 import data.events.ChangeSupport;
+
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Base-Class for all Elements of a History
@@ -33,8 +33,9 @@ public abstract class HistoricObject {
   protected ChangeListener changeListener;
   protected ChangeSupport changeSupport;
 
-  public HistoricObject() {
-	changeSupport = new ChangeSupport();
+  protected HistoricObject() {
+      super();
+      changeSupport = new ChangeSupport();
   }
 
   @XmlTransient
