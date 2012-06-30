@@ -106,11 +106,14 @@ public class Attribute extends HistoricObject implements Serializable {
 	return isPrimaryKey;
   }
 
-  // ForeignKey
   public void setIsForeignKey(boolean isForeignKey) {
 	changeSupport.fireBeforeChange();
 	this.isForeignKey = isForeignKey;
 	changeSupport.fireAfterChange();
+  }
+
+  public void setIsForeignKeyWithoutFiring(boolean isForeignKey) {
+      this.isForeignKey = isForeignKey;
   }
 
   public boolean getIsForeignKey() {

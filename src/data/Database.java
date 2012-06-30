@@ -19,6 +19,7 @@ package data;
 
 import data.events.Change;
 import data.events.ChangeListener;
+import data.events.Time;
 import utils.Utilities;
 
 import javax.xml.bind.annotation.*;
@@ -45,11 +46,17 @@ public class Database extends HistoricObject {
 	super();
 	database = new ArrayList<>();
 	foreignKeys = new ArrayList<>();
+    changeSupport.addChangeListener( new ChangeListener() {
+        @Override
+        public void Change(Change change) {
+            if(change.getTime().equals(Time.AFTERCHANGE)){
+                removeInvalidForeignKeyReferences();
+            }
+        }
+    });
 	super.changeListener = new ChangeListener() {
 	  @Override
-	  public void Change(Change change) {
-		changeSupport.fireChange(change.getTime());
-	  }
+	  public void Change(Change change) {changeSupport.fireChange(change.getTime());}
 	};
 	custCompany = "";
 	custAdress = "";
@@ -219,6 +226,51 @@ public class Database extends HistoricObject {
 		    fk.getTargetAttributeName(), sourceRelations));
 	  }
 	}
+  }
+
+    /**
+     * Runs through all ForeignKeyConstraints and
+     * removes those that contain invalid attributes or relations
+      */
+  private void removeInvalidForeignKeyReferences(){
+      ArrayList<ForeignKeyConstraint>fksToDelete=new ArrayList<>();
+      Attribute sourceAttribute,targetAttribute;
+
+      for(ForeignKeyConstraint fk : foreignKeys){
+          sourceAttribute=getAttributeFromRelation(fk.getSourceRelationName(),fk.getSourceAttributeName());
+          targetAttribute=getAttributeFromRelation(fk.getTargetRelationName(),fk.getTargetAttributeName());
+
+          if(sourceAttribute==null || targetAttribute==null){
+              if(targetAttribute==null && sourceAttribute!=null){
+                  sourceAttribute.setIsForeignKeyWithoutFiring(false);
+              }
+              fksToDelete.add(fk);
+          }else if(!targetAttribute.getIsPrimaryKey()){
+              sourceAttribute.setIsForeignKeyWithoutFiring(false);
+              fksToDelete.add(fk);
+          }
+
+      }
+
+      foreignKeys.removeAll(fksToDelete);
+  }
+
+    /**
+     * Returns a Attribute from a Relation by name
+      * @param relationName the name of the relation that contains the attribute
+     * @param attributeName the attribute to look for
+     * @return returns the wanted attribute or null if it wasn't found
+     */
+  private Attribute getAttributeFromRelation(String relationName,String attributeName){
+      RelationSchema relation= getRelationSchema(relationName);
+      Attribute attribute=null;
+      if(relation!=null){
+          attribute=relation.getAttributeByName(attributeName);
+          if(attribute!=null){
+            return attribute;
+          }
+      }
+      return attribute;
   }
 
   /**
