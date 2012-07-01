@@ -597,7 +597,6 @@ public class Database extends HistoricObject {
      */
     public void setType(TypeEnum type){
         this.type = type;
-        System.out.println(type);
     }
 }
 
