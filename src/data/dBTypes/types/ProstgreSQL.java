@@ -29,11 +29,13 @@ public class ProstgreSQL extends DbType {
     "TSQUERY", "TSVECTOR", "TXID_SNAPSHOT", "UUID", "XML"};
     private static ProstgreSQL instance = null;
 
+    @Override
     public String[] getTypes() {
         return types;
     }
 
-    private ProstgreSQL(){
+    private ProstgreSQL() {
+      super();
 
     }
 

@@ -18,11 +18,8 @@
 package data.dBTypes.types;
 
 /**
- * Created with IntelliJ IDEA.
- * User: andreas
- * Date: 01.07.12
- * Time: 08:43
- * To change this template use File | Settings | File Templates.
+ * Abstract class for factory pattern (data types)
+ * @author Andreas Freitag
  */
 public abstract class DbType {
     public abstract String[] getTypes();

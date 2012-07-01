@@ -34,19 +34,4 @@ public enum TypeEnum {
     public String getName() {
         return name;
     }
-
-    /**
-     * Get the Enumeration by String (name)
-     * @param value Name to look for
-     * @return Enumeration with value "name", or null if failure
-     */
-    public static TypeEnum getEnumByValue(String value){
-        for(TypeEnum e : values()){
-            if( e.getName().endsWith(value)){
-                return e;
-            }
-        }
-        return null;
-    }
-
 }

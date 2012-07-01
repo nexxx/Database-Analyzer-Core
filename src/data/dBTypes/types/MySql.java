@@ -29,11 +29,13 @@ public class MySql extends DbType {
             "DECIMAL", "DATE", "DATETIME", "TIMESTAMP", "TIME", "ENUM", "SET"};
     private static MySql instance = null;
 
+    @Override
     public String[] getTypes() {
         return types;
     }
 
-    private MySql(){
+    private MySql() {
+      super();
 
     }
 
