@@ -17,6 +17,8 @@
 
 package data.dBTypes.types;
 
+import javax.swing.*;
+
 /**
  * Singelton class with all available Attribute for a PostgreSQL Database
  *
@@ -28,15 +30,21 @@ public class ProstgreSQL extends DbType {
     "NUMERIC", "PATH", "POINT", "POLYGON", "FLOAT24", "INT2", "SERIAL4", "TEXT", "TIME", "TIMETZ", "TIMESTAMP", "TIMESTAMPTP",
     "TSQUERY", "TSVECTOR", "TXID_SNAPSHOT", "UUID", "XML"};
     private static ProstgreSQL instance = null;
+  private JComboBox<String> combobox;
 
     @Override
     public String[] getTypes() {
         return types;
     }
 
-    private ProstgreSQL() {
-      super();
+  @Override
+  public JComboBox<String> getCombobox() {
+    return combobox;
+  }
 
+  private ProstgreSQL() {
+      super();
+      combobox = new JComboBox<>(types);
     }
 
 
