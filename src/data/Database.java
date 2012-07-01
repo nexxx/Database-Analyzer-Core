@@ -17,6 +17,7 @@
 
 package data;
 
+import data.dBTypes.TypeEnum;
 import data.events.Change;
 import data.events.ChangeListener;
 import data.events.Time;
@@ -39,6 +40,7 @@ public class Database extends HistoricObject {
   private String custAdress;
   private String notes;
   private ArrayList<Person> persons;
+    private TypeEnum type;
 
   private ArrayList<ForeignKeyConstraint> foreignKeys;
 
@@ -62,6 +64,7 @@ public class Database extends HistoricObject {
 	custAdress = "";
 	notes = "";
 	persons = new ArrayList<>();
+      type = TypeEnum.MYSQL;
   }
 
   @XmlElementWrapper(name = "relations")
@@ -581,4 +584,21 @@ public class Database extends HistoricObject {
 	this.persons = persons;
   }
 
+    /**
+     *
+     * @return The Databasetype
+     */
+  public TypeEnum getType(){
+      return type;
+  }
+
+    /**
+     *
+     * @param type database type
+     */
+    public void setType(TypeEnum type){
+        this.type = type;
+        System.out.println(type);
+    }
 }
+

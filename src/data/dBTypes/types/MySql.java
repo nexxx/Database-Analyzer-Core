@@ -15,34 +15,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.      *
  ******************************************************************************/
 
-package data.dBTypes;
+package data.dBTypes.types;
 
 /**
  * Singelton class with all available Attribute for a MYSQL Database
- * 
+ *
  * @author Andreas Freitag
- * 
  */
-public class mySql {
-  private final String[] types = { "---", "CHAR", "VARCHAR", "TINYTEXT",
-	  "TEXT", "BLOB", "MEDIUMTEXT", "MEDIUMBLOB", "LONGTEXT", "LONGBLOB",
-	  "TINYINT", "SMALLINT", "MEDIUMINT", "INT", "BIGINT", "FLOAT", "DOUBLE",
-	  "DECIMAL", "DATE", "DATETIME", "TIMESTAMP", "TIME", "ENUM", "SET" };
-  private static mySql instance = null;
+public class MySql extends DbType {
+    private final String[] types = {"---", "CHAR", "VARCHAR", "TINYTEXT",
+            "TEXT", "BLOB", "MEDIUMTEXT", "MEDIUMBLOB", "LONGTEXT", "LONGBLOB",
+            "TINYINT", "SMALLINT", "MEDIUMINT", "INT", "BIGINT", "FLOAT", "DOUBLE",
+            "DECIMAL", "DATE", "DATETIME", "TIMESTAMP", "TIME", "ENUM", "SET"};
+    private static MySql instance = null;
 
-  public String[] getTypes() {
-	return types;
-  }
+    public String[] getTypes() {
+        return types;
+    }
 
-  /**
-   * Getter for the singelton mySql (thread-save)
-   * */
-  public synchronized static mySql getInstance() {
-	if (instance == null) {
-	  synchronized (mySql.class) {
-		instance = new mySql();
-	  }
-	}
-	return instance;
-  }
+    private MySql(){
+
+    }
+
+    /**
+     * Getter for the singelton MySql (thread-save)
+     */
+    public synchronized static MySql getInstance() {
+        if (instance == null) {
+            synchronized (MySql.class) {
+                instance = new MySql();
+            }
+        }
+        return instance;
+    }
 }
