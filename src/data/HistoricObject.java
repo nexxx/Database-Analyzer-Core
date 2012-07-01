@@ -29,12 +29,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * 
  */
 public abstract class HistoricObject {
-  private boolean isDirty = false;
+  private boolean isDirty;
   protected ChangeListener changeListener;
   protected ChangeSupport changeSupport;
 
   protected HistoricObject() {
       super();
+      isDirty=false;
       changeSupport = new ChangeSupport();
   }
 

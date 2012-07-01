@@ -76,25 +76,6 @@ public final class TimeLine extends HistoricObject {
   }
 
   /**
-   * Returns if the TimeLine is currently suspended
-   * 
-   * @return true for suspended, false if not
-   */
-  public boolean isSuspended() {
-	return history.isSuspended();
-  }
-
-  /**
-   * Sets if the TimeLine fires the ChangedEvent
-   * 
-   * @param suspended
-   *          true ==> fire event, false ==> cease fire
-   */
-  public void setSuspended(boolean suspended) {
-	history.setSuspended(suspended);
-  }
-
-  /**
    * Gets the element that is currently selected
    * 
    * @return the current element
@@ -119,6 +100,16 @@ public final class TimeLine extends HistoricObject {
    */
   public boolean travelBackward() {
 	return history.travelBackward();
+  }
+
+  @Override
+  public boolean isDirty() {
+      return history.isDirty();
+  }
+
+  @Override
+  public void setDirty(boolean dirty) {
+      history.setDirty(dirty);
   }
 
   /**

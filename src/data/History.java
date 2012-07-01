@@ -31,7 +31,6 @@ import java.util.ArrayList;
 public final class History extends HistoricObject {
   private ArrayList<HistoricObject> history;
   private HistoricObject currentElement;
-  private boolean suspended = false;
 
   public History() {
 	super();
@@ -60,13 +59,10 @@ public final class History extends HistoricObject {
 	super.changeListener = new ChangeListener() {
 	  @Override
 	  public void Change(Change change) {
-		if (!suspended) {
-
 		  switch (change.getTime()) {
 		  case BEFORECHANGE:
 			purgeFuture();
 			makeHistory();
-			setCurrentElementDirty(true);
 			notifyOfCurrentElementChange();
 			break;
 
@@ -74,36 +70,12 @@ public final class History extends HistoricObject {
 			changeSupport.fireChange(change.getTime());
 			break;
 		  }
-
-		}
 	  }
 	};
 
 	connectChangeListener();
   }
 
-  /**
-   * Returns if the TimeLine is currently suspended
-   * 
-   * @return true for suspended, false if not
-   */
-  public boolean isSuspended() {
-	return suspended;
-  }
-
-  /**
-   * Sets if the TimeLine fires the ChangedEvent
-   * 
-   * @param suspended
-   *          true ==> fire event, false ==> cease fire
-   */
-  public void setSuspended(boolean suspended) {
-	this.suspended = suspended;
-  }
-
-  private void setCurrentElementDirty(boolean dirty) {
-	currentElement.setDirty(dirty);
-  }
 
   /**
    * Moves forward in history
@@ -180,6 +152,7 @@ public final class History extends HistoricObject {
   private void makeHistory(HistoricObject oldElement) {
 	history.set(history.indexOf(currentElement), oldElement);
 	history.add(currentElement);
+    setDirty(true);
   }
 
   /**

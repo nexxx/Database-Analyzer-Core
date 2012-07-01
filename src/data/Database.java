@@ -369,7 +369,6 @@ public class Database extends HistoricObject {
 	}
 
 	dbClone.restoreReferences();
-	dbClone.setDirty(super.isDirty());
 
 	return dbClone;
   }
