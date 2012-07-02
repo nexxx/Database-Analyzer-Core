@@ -15,46 +15,47 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.      *
  ******************************************************************************/
 
-package data.dBTypes;
+package data.dBTypes.types;
 
-import data.Database;
-import data.dBTypes.types.*;
+import javax.swing.*;
 
 /**
- * Factory Class to provide the correct datatype class
+ * Singelton class with all available Attribute for a MS Database
  *
  * @author Andreas Freitag
  */
-public class DbTypeFactory {
-    private Database database;
+public class MicrosoftDatabase extends DbType {
+  private final String[] types = {"---", "BIGINT", "INT", "SMALLINT", "TINYINT", "BIT", "DECIMAL", "NUMERIC", "MONEY",
+    "SMALLMONEY", "FLOAT", "REAL", "DATETIME", "SMALLDATETIME", "CHAR", "VARCHAR", "TEXT", "NCHAR", "NVARCHAR", "NTEXT",
+    "BINARY", "VARBINARY", "IMAGE", "CURSOR", "SQL_VARIANT", "TABLE", "TIMESTAMP", "UNIQUEIDENTIFIER"};
+  private static MicrosoftDatabase instance = null;
+  public JComboBox<String> combobox;
 
-    public DbTypeFactory(Database db) {
-        super();
-        this.database = db;
-    }
+  @Override
+  public String[] getTypes() {
+    return types;
+  }
 
-    /**
-     * Factory method which returns the correct Datatype class
-     * @return DbType Class acc. to selection in Database
-     */
+  @Override
+  public JComboBox<String> getCombobox() {
+    return combobox;
+  }
 
-    public DbType getType(){
-      switch (database.getType()) {
-        case MYSQL:
-          return MySql.getInstance();
-        case POSTGRES:
-          return ProstgreSQL.getInstance();
-        case MSDB:
-          return MicrosoftDatabase.getInstance();
-        case ORACLE:
-          return Oracle.getInstance();
-        case SQLITE:
-          return SQLite3.getInstance();
-        default:
-          throw new IllegalArgumentException();
+  private MicrosoftDatabase() {
+    super();
+    combobox = new JComboBox<>(types);
+
+  }
+
+  /**
+   * Getter for the singelton MSDatabase (thread-save)
+   */
+  public synchronized static MicrosoftDatabase getInstance() {
+    if (instance == null) {
+      synchronized (MicrosoftDatabase.class) {
+        instance = new MicrosoftDatabase();
       }
-
     }
-
-
+    return instance;
+  }
 }

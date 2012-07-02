@@ -17,13 +17,15 @@
 
 package data.dBTypes;
 
+import data.dBTypes.types.Oracle;
+
 /**
  * Enumeration for Database type names
  *
  * @author Andreas Freitag
  */
 public enum TypeEnum {
-    MYSQL("MYSQL"), POSTGRES("PostgreSQL");
+    MYSQL("MYSQL"), POSTGRES("PostgreSQL"), MSDB("Microsoft"), ORACLE("Oracle"), SQLITE("SQLite3");
 
     private final String name;
 
